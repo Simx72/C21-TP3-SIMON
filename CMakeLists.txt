@@ -7,5 +7,5 @@ add_executable(TP3)
 
 target_sources(TP3
   PRIVATE
-    src/main.cpp
+    src/principal.cpp
 )
