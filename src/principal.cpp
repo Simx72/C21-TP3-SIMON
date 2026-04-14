@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "./liste.h"
+
 using namespace std;
 
 const char *MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
@@ -45,8 +47,8 @@ size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
 
 size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
                                Repondant rep[]) {
-    string name = "C21-LAB-3-Sondage.txt"; // exemple avec un path
-                                           // "C:/dossier/C21-LAB-3-Sondage.txt"
+    string name = "./src/tests.txt"; // exemple avec un path
+                                     // "C:/dossier/C21-LAB-3-Sondage.txt"
     fstream f(name, ios::in);
 
     if (f.fail()) // fichier ouvert ?
@@ -88,8 +90,6 @@ size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
     return r; // r = le nombre de répondants lus
 }
 
-
-
 int main() {
 
     // Pour recevoir les données du sondage
@@ -106,7 +106,20 @@ int main() {
     // B - appeler vos fonctions statistiques et afficher ici leurs résultats
     // ...
 
-    cin.get();
+    auto list = linked_list::new_linked_list();
+    linked_list::push_front(list, {"asd", 2});
+    linked_list::push_front(list, {"fsa", 2213});
+    linked_list::push_front(list, {"ufa", 241});
+    linked_list::push_front(list, {"nwe", 235});
+    linked_list::push_back(list, {"psd", 546});
+    linked_list::push_back(list, {"sjf", 34});
+    linked_list::push_back(list, {"jsfio", 734});
+    linked_list::push_back(list, {"nsf", 95});
+    linked_list::push_back(list, {"pea", 732});
+    linked_list::print(list);
+    linked_list::destroy(list);
+
+    // cin.get();
 
     // C - Recycler les allocations dynamiques
     delete[] r1;
