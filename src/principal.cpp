@@ -84,9 +84,6 @@ int main() {
     Repondant *rep = new Repondant[REPONDANTS_MAX]{}; // pour les réponses
                                                       // ville, age, scolarité
 
-	system("echo %cd%"); // pour vérifier le path du projet, à enlever si pas nécessaire
-
-
     // A - charger les données du sondage
     nb_repondants = lireLesDonneesDuSondage(r1, pro, inf, rep);
 
@@ -106,7 +103,7 @@ int main() {
 
     // Output
 
-    cout << "Réponses: \n";
+    cout << "Réponses: \n\n";
     cout << "Stat 01: " << res01 << endl;
     cout << "Stat 02: " << res02 << endl;
     cout << "Stat 03: " << res03 << endl;
