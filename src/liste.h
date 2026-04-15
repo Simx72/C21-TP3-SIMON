@@ -4,8 +4,8 @@
 namespace linked_list {
 
 struct Value {
-    std::string str;
-    int number;
+    std::string ville;
+    int quantity;
 };
 
 struct Node {
@@ -43,6 +43,8 @@ void push_back(LinkedList *list, Value value);
 Node *get_node_from_front(LinkedList *list, std::size_t index);
 
 bool insert_after_from_front(LinkedList *list, Value value, std::size_t index);
+
+Node* get_node_by_ville(LinkedList *list, std::string ville);
 
 } // namespace linked_list
 #endif

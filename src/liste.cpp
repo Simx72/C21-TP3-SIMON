@@ -58,9 +58,9 @@ void print(LinkedList *list) {
         auto current = list->head;
         while (current != nullptr) {
             std::cout << "{ ";
-            std::cout << current->value.str;
+            std::cout << current->value.ville;
             std::cout << ", ";
-            std::cout << current->value.number;
+            std::cout << current->value.quantity;
             std::cout << " } -> ";
             current = current->next;
         }
@@ -136,6 +136,16 @@ bool insert_after_from_front(LinkedList *list, Value value, std::size_t index) {
     // Insert
     insert_value_after_node(node, value);
     return true;
+}
+
+Node *get_node_by_ville(LinkedList *list, std::string ville) {
+    Node *current_node = list->head;
+    while (current_node != nullptr) {
+        if (current_node->value.ville == ville)
+            return current_node;
+        current_node = current_node->next;
+    }
+    return nullptr;
 }
 
 } // namespace linked_list

@@ -1,37 +1,18 @@
+#include <cstddef>
 #include <fstream>
 #include <iostream>
 #include <string>
 
-#include "./liste.h"
+#include "./stats.h"
 
 using namespace std;
 
 const char *MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
 
 // LA CONSTANTE DU PROGRAMME
-
-const size_t REPONDANTS_MAX = 500; // nombre maximun de répondants du sondage
-
 // LES STRUCTURES DE DONNÉES IMPOSÉES
 
-struct Protection {
-    int r2[REPONDANTS_MAX];
-    char r3[REPONDANTS_MAX];
-    char r4[REPONDANTS_MAX];
-    char r5[REPONDANTS_MAX];
-    char r6[REPONDANTS_MAX];
-};
-
-struct Infection {
-    bool r7;
-    int r8, r9, r10;
-};
-
-struct Repondant {
-    string ville;
-    int age;
-    int scolarite;
-};
+// dans stats.h
 
 // L'UNIQUE VARIABLE GLOBALE
 
@@ -63,29 +44,17 @@ size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
 
     char c;
     size_t r;
-    for (r = 0; r < REPONDANTS_MAX;
-         ++r) // lire les réponses de chaque répondant
+    // clang-format off
+    for (r = 0; r < REPONDANTS_MAX; ++r) // lire les réponses de chaque répondant
     {
-        f >> c;
-        if (c == 'O')
-            r1[r] = true;
-        else
-            r1[r] = false; // r1
-        f >> pro->r2[r] >> pro->r3[r] >> pro->r4[r] >> pro->r5[r] >>
-            pro->r6[r]; // r2 à r6
-        f >> c;
-        if (c == 'O')
-            inf[r].r7 = true;
-        else
-            inf[r].r7 = false;                     // r7
-        f >> inf[r].r8 >> inf[r].r9 >> inf[r].r10; // r8 à r10
-        f >> rep[r].ville >> rep[r].age >>
-            rep[r].scolarite; // ville, age, scolarité
-        if (f.fail()) {
-            f.clear();
-            break;
-        }
+        f >> c;	if (c == 'O') r1[r] = true; else r1[r] = false;						// r1
+		f >> pro->r2[r] >> pro->r3[r] >> pro->r4[r] >> pro->r5[r] >> pro->r6[r];	// r2 à r6
+		f >> c; if (c == 'O') inf[r].r7 = true; else inf[r].r7 = false;				// r7
+		f >> inf[r].r8 >> inf[r].r9 >> inf[r].r10;									// r8 à r10
+		f >> rep[r].ville >> rep[r].age >> rep[r].scolarite;						// ville, age, scolarité
+		if (f.fail()) { f.clear(); break; }
     }
+    // clang-format on
     f.close();
     return r; // r = le nombre de répondants lus
 }
@@ -106,18 +75,30 @@ int main() {
     // B - appeler vos fonctions statistiques et afficher ici leurs résultats
     // ...
 
-    auto list = linked_list::new_linked_list();
-    linked_list::push_front(list, {"asd", 2});
-    linked_list::push_front(list, {"fsa", 2213});
-    linked_list::push_front(list, {"ufa", 241});
-    linked_list::push_front(list, {"nwe", 235});
-    linked_list::push_back(list, {"psd", 546});
-    linked_list::push_back(list, {"sjf", 34});
-    linked_list::push_back(list, {"jsfio", 734});
-    linked_list::push_back(list, {"nsf", 95});
-    linked_list::push_back(list, {"pea", 732});
-    linked_list::print(list);
-    linked_list::destroy(list);
+    int res01 = stat_01(r1, nb_repondants);
+    int res02 = stat_02(pro->r3, nb_repondants);
+    double res03 = stat_03(pro->r2, rep, nb_repondants);
+    double res04 = stat_04(rep, pro->r5, pro->r6, nb_repondants);
+    double res05 = stat_05(rep, pro->r2, nb_repondants);
+    double res06 = stat_06(inf, nb_repondants);
+    string res07 = stat_07(inf, nb_repondants);
+    size_t res08 = stat_08(inf, pro->r4, nb_repondants);
+    double res09 = stat_09(rep, inf, pro->r4, nb_repondants);
+    string res10 = stat_10(rep, inf, nb_repondants);
+
+    // Output
+
+    cout << "Réponses: \n";
+    cout << "Stat 01: " << res01 << endl;
+    cout << "Stat 02: " << res02 << endl;
+    cout << "Stat 03: " << res03 << endl;
+    cout << "Stat 04: " << res04 << endl;
+    cout << "Stat 05: " << res05 << endl;
+    cout << "Stat 06: " << res06 << endl;
+    cout << "Stat 07: " << res07 << endl;
+    cout << "Stat 08: " << res08 << endl;
+    cout << "Stat 09: " << res09 << endl;
+    cout << "Stat 10: " << res10 << endl;
 
     // cin.get();
 
