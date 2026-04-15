@@ -99,7 +99,7 @@ int main() {
     double res06 = stat_06(inf, nb_repondants);
     string res07 = stat_07(inf, nb_repondants);
     size_t res08 = stat_08(inf, pro->r4, nb_repondants);
-    double res09 = stat_09(rep, inf, pro->r4, nb_repondants);
+    double res09 = stat_09(rep, inf, pro->r2, nb_repondants);
     string res10 = stat_10(rep, inf, nb_repondants);
 
     // Output

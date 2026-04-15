@@ -119,16 +119,21 @@ std::size_t stat_08(Infection *inf, char *r4, std::size_t nb_repondants) {
 // Montréal sans masque ou sans désinfectant ?
 //    _Ceux qui sont certains d’être infectés (Oui à question 9) et ne pas
 //    considérer la réponse à la question 7._
-double stat_09(Repondant *rep, Infection *inf, char *r4,
+double stat_09(Repondant *rep, Infection *inf, int *r2,
                std::size_t nb_repondants) {
     std::size_t total = 0, somme = 0;
     for (std::size_t i = 0; i < nb_repondants; i++)
-        if (inf[i].r9 == 1)
-            if (rep[i].ville == "Montreal")
-                if (r4[i] == 'N' || inf[i].r8 == 1) {
-                    total++;
-                    somme += rep[i].scolarite;
-                }
+    { 
+        const bool infecte = inf[i].r9 == 1,
+            ville = rep[i].ville == "Montreal",
+            pas_masque = r2[i] == 0,
+            pas_desinf = inf[i].r8 == 1;
+
+        if ((infecte && ville) && (pas_masque || pas_desinf)) {
+            total++;
+            somme += rep[i].scolarite;
+        }
+    }
     if (total == 0)
         return 0;
     else

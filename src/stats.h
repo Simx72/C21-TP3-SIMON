@@ -32,8 +32,7 @@ double stat_05(Repondant *rep, int *r2, std::size_t nb_repondants);
 double stat_06(Infection *inf, std::size_t nb_repondants);
 std::string stat_07(Infection *inf, std::size_t nb_repondants);
 std::size_t stat_08(Infection *inf, char *r4, std::size_t nb_repondants);
-double stat_09(Repondant *rep, Infection *inf, char *r4,
-               std::size_t nb_repondants);
+double stat_09(Repondant *rep, Infection *inf, int *r2, std::size_t nb_repondants);
 std::string stat_10(Repondant *rep, Infection *inf, std::size_t nb_repondants);
 
 #endif
