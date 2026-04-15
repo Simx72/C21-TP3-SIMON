@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 #ifdef _WIN32
@@ -106,13 +107,13 @@ int main() {
     cout << "Réponses: \n\n";
     cout << "Stat 01: " << res01 << endl;
     cout << "Stat 02: " << res02 << endl;
-    cout << "Stat 03: " << res03 << endl;
-    cout << "Stat 04: " << res04 << endl;
-    cout << "Stat 05: " << res05 << endl;
-    cout << "Stat 06: " << res06 << endl;
+    cout << "Stat 03: " << fixed << setprecision(1) << res03 << endl;
+    cout << "Stat 04: " << fixed << setprecision(1) << res04 << endl;
+    cout << "Stat 05: " << fixed << setprecision(1) << (res05 * 100) << " %" << endl;
+    cout << "Stat 06: " << fixed << setprecision(1) << (res06 * 100) << " %" << endl;
     cout << "Stat 07: " << res07 << endl;
     cout << "Stat 08: " << res08 << endl;
-    cout << "Stat 09: " << res09 << endl;
+    cout << "Stat 09: " << fixed << setprecision(1) << res09 << endl;
     cout << "Stat 10: " << res10 << endl;
 
     // cin.get();
