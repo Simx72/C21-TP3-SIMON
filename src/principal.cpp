@@ -3,6 +3,10 @@
 #include <iostream>
 #include <string>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 #include "./stats.h"
 
 using namespace std;
@@ -21,15 +25,20 @@ size_t nb_repondants; // le nombre réel de répondants: nb_repondants =
 
 // DÉCALRATIONS DES FONCTIONS  -- écrire vos déclarations ici ...
 
-size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
+size_t lireLesDonneesDuSondage(bool r1[], Protection *pro, Infection inf[],
                                Repondant rep[]);
 
 // DÉFINITIONS DES FONCTIONS  --  écrire vos définitions ici ...
 
-size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
+size_t lireLesDonneesDuSondage(bool r1[], Protection *pro, Infection inf[],
                                Repondant rep[]) {
+
+#ifdef _WIN32
+    string name = "../../../src/tests.txt";
+#else
     string name = "./src/tests.txt"; // exemple avec un path
-                                     // "C:/dossier/C21-LAB-3-Sondage.txt"
+#endif
+
     fstream f(name, ios::in);
 
     if (f.fail()) // fichier ouvert ?
@@ -61,6 +70,12 @@ size_t lireLesDonnéesDuSondage(bool r1[], Protection *pro, Infection inf[],
 
 int main() {
 
+#ifdef _WIN32
+    // Activer UTF-8 pour l'entrée/sortie console
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+
     // Pour recevoir les données du sondage
     bool *r1 = new bool[REPONDANTS_MAX]{}; // pour la  réponse  1
     Protection *pro = new Protection{};    // pour les réponses 2-3-4-5-6
@@ -69,8 +84,11 @@ int main() {
     Repondant *rep = new Repondant[REPONDANTS_MAX]{}; // pour les réponses
                                                       // ville, age, scolarité
 
+	system("echo %cd%"); // pour vérifier le path du projet, à enlever si pas nécessaire
+
+
     // A - charger les données du sondage
-    nb_repondants = lireLesDonnéesDuSondage(r1, pro, inf, rep);
+    nb_repondants = lireLesDonneesDuSondage(r1, pro, inf, rep);
 
     // B - appeler vos fonctions statistiques et afficher ici leurs résultats
     // ...
