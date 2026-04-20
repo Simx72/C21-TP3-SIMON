@@ -1,145 +1,89 @@
 #include "./liste.h"
 #include <iostream>
+#include <stdexcept>
 
 namespace linked_list {
 
 // NODES
 
-Node *new_node(Value value) { return new Node{value, nullptr, nullptr}; }
+Node* new_node(Value value) { return new Node{value, nullptr}; }
 
-void destroy_node(Node *node) { delete node; }
+void node_destroy(Node* node) { delete node; }
 
-void insert_node_after_node(Node *prev, Node *next) {
-    if (prev != nullptr && next != nullptr) {
-        if (prev->next != nullptr) {
-            next->next = prev->next;
+void node_insert_next(Node* node, Node* next) {
+    if (node != nullptr && next != nullptr) {
+        // If node has already someone
+        if (node->next != nullptr) {
+            // Move to next
+            next->next = node->next;
         }
-        prev->next = next;
-        if (next->prev != nullptr) {
-            prev->prev = next->prev;
-        }
-        next->prev = prev;
+        node->next = next;
     } else {
-        std::cerr << "Can't insert node after node. Some node is nullptr."
-                  << std::endl;
+        throw std::runtime_error("Can't insert node after node. A param is nullptr.");
     }
 }
 
-void insert_value_after_node(Node *node, Value value) {
+void node_insert_value_next(Node* node, Value value) {
     auto next = new_node(value);
-    insert_node_after_node(node, next);
-}
-
-void insert_value_before_node(Node *node, Value value) {
-    auto prev = new_node(value);
-    insert_node_after_node(prev, node);
+    node_insert_next(node, next);
 }
 
 // LINKED_LISTS
 
-LinkedList *new_linked_list() { return new LinkedList{nullptr, nullptr, 0}; }
+LinkedList* new_linked_list() { return new LinkedList{nullptr, 0}; }
 
-void destroy(LinkedList *list) {
+void destroy(LinkedList* list) {
     if (list != nullptr) {
-        // delete all nodes
-        auto node = list->head;
-        while (node != nullptr) {
-            Node *next = node->next;
-            destroy_node(node);
-            node = next;
+        // 1. delete all nodes
+        while (list->head != nullptr) {
+            pop_front(list);
         }
-        // delete list
+        // 2. delete list
         delete list;
-    }
+    } // else { ignore }
 }
 
-void print(LinkedList *list) {
+void print(LinkedList* list) {
     if (list != nullptr) {
-        auto current = list->head;
-        while (current != nullptr) {
+        for (auto current = list->head; current != nullptr; current = current->next) {
             std::cout << "{ ";
             std::cout << current->value.ville;
             std::cout << ", ";
             std::cout << current->value.quantity;
             std::cout << " } -> ";
-            current = current->next;
         }
         std::cout << "nullptr\n";
     }
 }
 
-void push_front(LinkedList *list, Value value) {
+void push_front(LinkedList* list, Value value) {
     // cautions
     if (list == nullptr) {
         std::cerr << "List is nullptr";
     }
     // push
     if (list->size == 0) {
-        // if empty
         list->head = new_node(value);
-        list->tail = list->head;
     } else {
-        insert_value_before_node(list->head, value);
-        list->head = list->head->prev;
+        node_insert_value_next(list->head, value);
     }
     list->size++;
 }
 
-void push_back(LinkedList *list, Value value) {
-    // cautions
-    if (list == nullptr) {
-        std::cerr << "List is nullptr";
-    }
-    // push
-    if (list->size == 0) {
-        // if empty
-        list->tail = new_node(value);
-        list->head = list->tail;
-    } else {
-        insert_value_after_node(list->tail, value);
-        list->tail = list->tail->next;
-    }
-    list->size++;
-}
-
-Node *get_node_from_front(LinkedList *list, std::size_t index) {
-    // Cautions
-    if (list == nullptr) {
-        std::cerr << "Attempt to get node from empty linked list.";
-        return nullptr;
-    }
-    if (index >= list->size) {
-        std::cerr << "Attempt to get node out of bounds. size=" << list->size
-                  << " index=" << index << std::endl;
-        return nullptr;
-    }
-    // Get
-    Node *current_node = list->head;
-    while (index > 0) {
-        current_node = current_node->next;
-        if (current_node == nullptr) {
-            std::cerr << "Unexpected error in get_node_from_front()";
-            return nullptr;
+bool pop_front(LinkedList* list) {
+    if (list != nullptr) {
+        if (list->head != nullptr) {
+            Node* next = list->head->next;
+            node_destroy(list->head);
+            list->head = next;
+            return true;
         }
-        index--;
     }
-    return current_node;
+    return false;
 }
 
-bool insert_after_from_front(LinkedList *list, Value value, std::size_t index) {
-    // Cautions
-    Node *node = get_node_from_front(list, index);
-    if (node == nullptr) {
-        std::cerr << "Couldn't insert at index " << index << std::endl;
-        return false;
-    }
-    // Insert
-    insert_value_after_node(node, value);
-    return true;
-}
-
-Node *get_node_by_ville(LinkedList *list, std::string ville) {
-    Node *current_node = list->head;
+Node* get_node_by_ville(LinkedList* list, std::string ville) {
+    Node* current_node = list->head;
     while (current_node != nullptr) {
         if (current_node->value.ville == ville)
             return current_node;

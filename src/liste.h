@@ -20,12 +20,6 @@ struct LinkedList {
 
 // NODES
 
-// Node *new_node(Value value);
-
-// void destroy_node(Node *node);
-
-// void insert_after_node(Node *node, Value value);
-
 // LINKED_LISTS
 
 LinkedList* new_linked_list();
@@ -36,11 +30,7 @@ void print(LinkedList* list);
 
 void push_front(LinkedList* list, Value value);
 
-void push_back(LinkedList* list, Value value);
-
-Node* get_node_from_front(LinkedList* list, std::size_t index);
-
-bool insert_after_from_front(LinkedList* list, Value value, std::size_t index);
+bool pop_front(LinkedList* list);
 
 Node* get_node_by_ville(LinkedList* list, std::string ville);
 
