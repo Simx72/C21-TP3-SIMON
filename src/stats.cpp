@@ -161,6 +161,7 @@ std::string stat_10(Repondant* rep, Infection* inf, std::size_t nb_repondants) {
             max_node = current_node;
         current_node = current_node->next;
     }
+    // Return
     auto result = max_node->value.ville;
     linked_list::destroy(ll);
     return result;
