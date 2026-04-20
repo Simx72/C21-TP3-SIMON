@@ -10,13 +10,11 @@ struct Value {
 
 struct Node {
     Value value;
-    Node *next;
-    Node *prev;
+    Node* next;
 };
 
 struct LinkedList {
-    Node *head;
-    Node *tail;
+    Node* head;
     size_t size;
 };
 
@@ -30,21 +28,21 @@ struct LinkedList {
 
 // LINKED_LISTS
 
-LinkedList *new_linked_list();
+LinkedList* new_linked_list();
 
-void destroy(LinkedList *list);
+void destroy(LinkedList* list);
 
-void print(LinkedList *list);
+void print(LinkedList* list);
 
-void push_front(LinkedList *list, Value value);
+void push_front(LinkedList* list, Value value);
 
-void push_back(LinkedList *list, Value value);
+void push_back(LinkedList* list, Value value);
 
-Node *get_node_from_front(LinkedList *list, std::size_t index);
+Node* get_node_from_front(LinkedList* list, std::size_t index);
 
-bool insert_after_from_front(LinkedList *list, Value value, std::size_t index);
+bool insert_after_from_front(LinkedList* list, Value value, std::size_t index);
 
-Node* get_node_by_ville(LinkedList *list, std::string ville);
+Node* get_node_by_ville(LinkedList* list, std::string ville);
 
 } // namespace linked_list
 #endif
