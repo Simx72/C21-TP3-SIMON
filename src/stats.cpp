@@ -122,12 +122,9 @@ std::size_t stat_08(Infection *inf, char *r4, std::size_t nb_repondants) {
 double stat_09(Repondant *rep, Infection *inf, int *r2,
                std::size_t nb_repondants) {
     std::size_t total = 0, somme = 0;
-    for (std::size_t i = 0; i < nb_repondants; i++)
-    { 
-        const bool infecte = inf[i].r9 == 1,
-            ville = rep[i].ville == "Montreal",
-            pas_masque = r2[i] == 0,
-            pas_desinf = inf[i].r8 == 1;
+    for (std::size_t i = 0; i < nb_repondants; i++) {
+        const bool infecte = inf[i].r9 == 1, ville = rep[i].ville == "Montreal",
+                   pas_masque = r2[i] == 0, pas_desinf = inf[i].r8 == 1;
 
         if ((infecte && ville) && (pas_masque || pas_desinf)) {
             total++;
@@ -157,6 +154,7 @@ std::string stat_10(Repondant *rep, Infection *inf, std::size_t nb_repondants) {
     linked_list::Node *max_node = ll->head;
     linked_list::Node *current_node = ll->head;
     if (max_node == nullptr) {
+        linked_list::destroy(ll);
         return "Error";
     }
     while (current_node != nullptr) {
@@ -164,5 +162,7 @@ std::string stat_10(Repondant *rep, Infection *inf, std::size_t nb_repondants) {
             max_node = current_node;
         current_node = current_node->next;
     }
-    return max_node->value.ville;
+    auto result = max_node->value.ville;
+    linked_list::destroy(ll);
+    return result;
 }
