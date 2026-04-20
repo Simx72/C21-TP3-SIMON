@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const char *MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
+const char* MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
 
 // LA CONSTANTE DU PROGRAMME
 // LES STRUCTURES DE DONNÉES IMPOSÉES
@@ -26,13 +26,11 @@ size_t nb_repondants; // le nombre réel de répondants: nb_repondants =
 
 // DÉCALRATIONS DES FONCTIONS  -- écrire vos déclarations ici ...
 
-size_t lireLesDonneesDuSondage(bool r1[], Protection *pro, Infection inf[],
-                               Repondant rep[]);
+size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repondant rep[]);
 
 // DÉFINITIONS DES FONCTIONS  --  écrire vos définitions ici ...
 
-size_t lireLesDonneesDuSondage(bool r1[], Protection *pro, Infection inf[],
-                               Repondant rep[]) {
+size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repondant rep[]) {
 
 #ifdef _WIN32
     string name = "../../../src/tests.txt";
@@ -78,11 +76,10 @@ int main() {
 #endif
 
     // Pour recevoir les données du sondage
-    bool *r1 = new bool[REPONDANTS_MAX]{}; // pour la  réponse  1
-    Protection *pro = new Protection{};    // pour les réponses 2-3-4-5-6
-    Infection *inf =
-        new Infection[REPONDANTS_MAX]{}; // pour les réponses 7-8-9-10
-    Repondant *rep = new Repondant[REPONDANTS_MAX]{}; // pour les réponses
+    bool* r1 = new bool[REPONDANTS_MAX]{};            // pour la  réponse  1
+    Protection* pro = new Protection{};               // pour les réponses 2-3-4-5-6
+    Infection* inf = new Infection[REPONDANTS_MAX]{}; // pour les réponses 7-8-9-10
+    Repondant* rep = new Repondant[REPONDANTS_MAX]{}; // pour les réponses
                                                       // ville, age, scolarité
 
     // A - charger les données du sondage
