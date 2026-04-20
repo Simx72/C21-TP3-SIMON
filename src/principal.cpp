@@ -1,7 +1,7 @@
 #include <cstddef>
 #include <fstream>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <string>
 
 #ifdef _WIN32
@@ -104,19 +104,50 @@ int main() {
 
     // Output
 
+    cout << "TP3 - SIMON - 2026\n\n";
     cout << "Réponses: \n\n";
-    cout << "Stat 01: " << res01 << endl;
-    cout << "Stat 02: " << res02 << endl;
-    cout << "Stat 03: " << fixed << setprecision(1) << res03 << endl;
-    cout << "Stat 04: " << fixed << setprecision(1) << res04 << endl;
-    cout << "Stat 05: " << fixed << setprecision(1) << (res05 * 100) << " %" << endl;
-    cout << "Stat 06: " << fixed << setprecision(1) << (res06 * 100) << " %" << endl;
-    cout << "Stat 07: " << res07 << endl;
-    cout << "Stat 08: " << res08 << endl;
-    cout << "Stat 09: " << fixed << setprecision(1) << res09 << endl;
-    cout << "Stat 10: " << res10 << endl;
 
-    // cin.get();
+    cout << "1. Combien de personnes toussent souvent ?\n";
+    cout << "\tR: " << res01 << "\n\n";
+
+    cout << "2. Combien de personnes veulent un masque dans leur auto ?\n";
+    cout << "\tR: " << res02 << "\n\n";
+
+    cout << "3. Combien de masques, en moyenne, ont les gens qui sont dans la\n"
+            "   trentaine ?\n";
+    cout << "\tR: " << fixed << setprecision(1) << res03 << "\n\n";
+
+    cout << "4. Quel est l'âge moyen des gens qui se serviraient d’un masque\n"
+            "   pour décorer ou pour dormir ?\n";
+    cout << "\tR: " << fixed << setprecision(1) << res04 << "\n\n";
+
+    cout << "5. Quel pourcentage des gens de Vaudreuil possèdent plus d'un\n"
+            "   masque ?\n";
+    cout << "\tR: " << fixed << setprecision(1) << (res05 * 100) << " %"
+         << "\n\n";
+
+    cout << "6. Quel pourcentage de la population utilise du désinfectant ?\n";
+    cout << "\tR: " << fixed << setprecision(1) << (res06 * 100) << " %"
+         << "\n\n";
+
+    cout << "7. Quel est le type de désinfectant le plus répandu ?\n";
+    cout << "\tR: " << res07 << "\n\n";
+
+    cout << "8. Combien de gens non testés et n’utilisant pas de désinfectant\n"
+            "   ont déjà emprunté un masque ?\n";
+    cout << "\tR: " << res08 << "\n\n";
+
+    cout << "9. Combien d'années de scolarité, en moyenne, ont les gens\n"
+            "   infectés de Montréal sans masque ou sans désinfectant ?\n";
+    cout << "\tR: " << fixed << setprecision(1) << res09 << "\n\n";
+
+    cout << "10. Quelle est la ville ayant fait subir le plus grand nombre de\n"
+            "   tests ?\n";
+    cout << "\tR: " << res10 << "\n\n";
+
+#ifdef _WIN32
+    _getch();
+#endif
 
     // C - Recycler les allocations dynamiques
     delete[] r1;
