@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <string>
 
+extern std::size_t nb_repondants;
+
 const size_t REPONDANTS_MAX = 500; // nombre maximun de répondants du sondage
 
 struct Protection {
@@ -24,15 +26,15 @@ struct Repondant {
     int scolarite;
 };
 
-std::size_t stat_01(bool* r1, std::size_t nb_repondants);
-std::size_t stat_02(char* r3, std::size_t nb_repondants);
-double stat_03(int* r2, Repondant* rep, std::size_t nb_repondants);
-double stat_04(Repondant* rep, char* r5, char* r6, std::size_t nb_repondants);
-double stat_05(Repondant* rep, int* r2, std::size_t nb_repondants);
-double stat_06(Infection* inf, std::size_t nb_repondants);
-std::string stat_07(Infection* inf, std::size_t nb_repondants);
-std::size_t stat_08(Infection* inf, char* r4, std::size_t nb_repondants);
-double stat_09(Repondant* rep, Infection* inf, int* r2, std::size_t nb_repondants);
-std::string stat_10(Repondant* rep, Infection* inf, std::size_t nb_repondants);
+std::size_t stat_01(bool* r1);
+std::size_t stat_02(char* r3);
+double stat_03(int* r2, Repondant* rep);
+double stat_04(Repondant* rep, char* r5, char* r6);
+double stat_05(Repondant* rep, int* r2);
+double stat_06(Infection* inf);
+std::string stat_07(Infection* inf);
+std::size_t stat_08(Infection* inf, char* r4);
+double stat_09(Repondant* rep, Infection* inf, int* r2);
+std::string stat_10(Repondant* rep, Infection* inf);
 
 #endif

@@ -89,16 +89,16 @@ int main() {
     // B - appeler vos fonctions statistiques et afficher ici leurs résultats
     // ...
 
-    int res01 = stat_01(r1, nb_repondants);
-    int res02 = stat_02(pro->r3, nb_repondants);
-    double res03 = stat_03(pro->r2, rep, nb_repondants);
-    double res04 = stat_04(rep, pro->r5, pro->r6, nb_repondants);
-    double res05 = stat_05(rep, pro->r2, nb_repondants);
-    double res06 = stat_06(inf, nb_repondants);
-    string res07 = stat_07(inf, nb_repondants);
-    size_t res08 = stat_08(inf, pro->r4, nb_repondants);
-    double res09 = stat_09(rep, inf, pro->r2, nb_repondants);
-    string res10 = stat_10(rep, inf, nb_repondants);
+    int res01 = stat_01(r1);
+    int res02 = stat_02(pro->r3);
+    double res03 = stat_03(pro->r2, rep);
+    double res04 = stat_04(rep, pro->r5, pro->r6);
+    double res05 = stat_05(rep, pro->r2);
+    double res06 = stat_06(inf);
+    string res07 = stat_07(inf);
+    size_t res08 = stat_08(inf, pro->r4);
+    double res09 = stat_09(rep, inf, pro->r2);
+    string res10 = stat_10(rep, inf);
 
     // Output
 
