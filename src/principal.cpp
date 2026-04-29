@@ -5,8 +5,8 @@
 #include <string>
 
 #ifdef _WIN32
-#include <windows.h>
 #include <conio.h>
+#include <windows.h>
 #endif
 
 #include "./stats.h"
@@ -14,11 +14,6 @@
 using namespace std;
 
 const char* MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
-
-// LA CONSTANTE DU PROGRAMME
-// LES STRUCTURES DE DONNÉES IMPOSÉES
-
-// dans stats.h
 
 // L'UNIQUE VARIABLE GLOBALE
 

@@ -5,7 +5,11 @@
 
 extern std::size_t nb_repondants;
 
-const size_t REPONDANTS_MAX = 500; // nombre maximun de répondants du sondage
+// LA CONSTANTE DU PROGRAMME
+
+const size_t REPONDANTS_MAX = 500; // nombre maximum de répondants du sondage
+
+// LES STRUCTURES DE DONNÉES IMPOSÉES
 
 struct Protection {
     int r2[REPONDANTS_MAX];
