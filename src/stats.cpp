@@ -22,33 +22,33 @@ std::size_t stat_02(char* r3) {
 
 // 3. Combien de masques, en moyenne, ont les gens qui sont dans la trentaine ?
 double stat_03(int* r2, Repondant* rep) {
-    std::size_t nb_de_personnes = 0;
-    std::size_t nb_de_masques = 0;
+    std::size_t total = 0;
+    std::size_t somme = 0;
     for (size_t i = 0; i < nb_repondants; i++)
         if (rep[i].age >= 30 && rep[i].age < 40) {
-            nb_de_masques += r2[i];
-            nb_de_personnes++;
+            somme += r2[i];
+            total++;
         }
-    if (nb_de_personnes == 0)
+    if (total == 0)
         return 0;
     else
-        return (double)nb_de_masques / (double)nb_de_personnes;
+        return static_cast<double>(somme) / static_cast<double>(total);
 }
 
 // 4. Quel est l'âge moyen des gens qui se serviraient d’un masque pour décorer
 // ou pour dormir ?
 double stat_04(Repondant* rep, char* r5, char* r6) {
-    std::size_t nb_de_personnes = 0;
-    std::size_t somme_des_ages = 0;
+    std::size_t total = 0;
+    std::size_t somme = 0;
     for (size_t i = 0; i < nb_repondants; i++)
         if (r5[i] == 'O' || r6[i] == 'O') {
-            somme_des_ages += rep[i].age;
-            nb_de_personnes++;
+            somme += rep[i].age;
+            total++;
         }
-    if (nb_de_personnes == 0)
+    if (total == 0)
         return 0;
     else
-        return (double)somme_des_ages / (double)nb_de_personnes;
+        return static_cast<double>(somme) / static_cast<double>(total);
 }
 
 // 5. Quel pourcentage des gens de Vaudreuil possèdent plus d'un masque ?
@@ -63,7 +63,7 @@ double stat_05(Repondant* rep, int* r2) {
     if (total == 0)
         return 0;
     else
-        return (double)fraction / (double)total;
+        return static_cast<double>(fraction) / static_cast<double>(total);
 }
 
 // 6. Quel pourcentage de la population utilise du désinfectant ?
@@ -75,7 +75,7 @@ double stat_06(Infection* inf) {
     if (nb_repondants == 0)
         return 0;
     else
-        return (double)fraction / (double)nb_repondants;
+        return static_cast<double>(fraction) / static_cast<double>(nb_repondants);
 }
 
 // 7. Quel est le type de désinfectant le plus répandu ?
@@ -137,7 +137,7 @@ double stat_09(Repondant* rep, Infection* inf, int* r2) {
     if (total == 0)
         return 0;
     else
-        return (double)somme / (double)total;
+        return static_cast<double>(somme) / static_cast<double>(total);
 }
 
 // 10. Quelle est la ville ayant fait subir le plus grand nombre de tests ?
