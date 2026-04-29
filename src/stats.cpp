@@ -41,7 +41,7 @@ double stat_04(Repondant* rep, char* r5, char* r6) {
     std::size_t nb_de_personnes = 0;
     std::size_t somme_des_ages = 0;
     for (size_t i = 0; i < nb_repondants; i++)
-        if (r5[i] || r6[i]) {
+        if (r5[i] == 'O' || r6[i] == 'O') {
             somme_des_ages += rep[i].age;
             nb_de_personnes++;
         }
@@ -122,10 +122,14 @@ std::size_t stat_08(Infection* inf, char* r4) {
 double stat_09(Repondant* rep, Infection* inf, int* r2) {
     std::size_t total = 0, somme = 0;
     for (std::size_t i = 0; i < nb_repondants; i++) {
-        const bool infecte = inf[i].r9 == 1, ville = rep[i].ville == "Montreal",
-                   pas_masque = r2[i] == 0, pas_desinf = inf[i].r8 == 1;
-
-        if ((infecte && ville) && (pas_masque || pas_desinf)) {
+        // clang-format off
+        const bool
+            infecte = inf[i].r9 == 1, 
+            ville = rep[i].ville == "Montreal",
+            pas_masque = r2[i] == 0,
+            pas_desinf = inf[i].r8 == 1;
+        // clang-format on
+        if (infecte && ville && (pas_masque || pas_desinf)) {
             total++;
             somme += rep[i].scolarite;
         }
