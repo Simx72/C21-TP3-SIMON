@@ -13,7 +13,7 @@
 
 using namespace std;
 
-const char* MESSAGE_ERREUR = "Impossible d'ouvrir le fichier, Fin du programme";
+const char* MESSAGE_ERREUR = "Impossible d'ouvrir le fichier tests.txt. Fin du programme";
 
 // L'UNIQUE VARIABLE GLOBALE
 
@@ -28,10 +28,10 @@ size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repo
 
 size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repondant rep[]) {
 
-#ifdef _WIN32
-    string name = "../../../src/tests.txt";
+#ifdef PROJECT_TEST_FILE
+    string name = PROJECT_TEST_FILE;
 #else
-    string name = "./src/tests.txt"; // exemple avec un path
+    string name = "./src/tests.txt";
 #endif
 
     fstream f(name, ios::in);

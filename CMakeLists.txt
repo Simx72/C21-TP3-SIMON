@@ -4,6 +4,15 @@ project(TP3 VERSION 0.1.0 LANGUAGES CXX)
 
 add_executable(TP3)
 
+if(MINGW)
+  message(STATUS "Building with MinGW")
+endif()
+
+# Define tests path
+target_compile_definitions(TP3 PRIVATE
+  PROJECT_TEST_FILE="${CMAKE_SOURCE_DIR}/src/tests.txt"
+)
+
 target_sources(TP3
   PRIVATE
     src/principal.cpp
