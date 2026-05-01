@@ -1,17 +1,25 @@
 # Programme de statistiques sur un virus
 
-# Compilation
+## Compilation
 
 Sur linux...
 
+Install necessary components
+
+```
+sudo apt install cmake ninja-build
+```
+
+Then
+
 ```bash
 # Create build instructions
-cmake -B build
+cmake --preset linux
 # Compile
-cmake --build build
+cmake --build --preset linux
 ```
 
 ```bash
 # Run
-build/TP3
+build/linux/TP3
 ```
