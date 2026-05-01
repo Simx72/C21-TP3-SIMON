@@ -31,7 +31,7 @@ size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repo
 #ifdef PROJECT_TEST_FILE
     string name = PROJECT_TEST_FILE;
 #else
-    string name = "./src/tests.txt";
+    string name = "src/tests.txt";
 #endif
 
     fstream f(name, ios::in);
@@ -39,7 +39,10 @@ size_t lireLesDonneesDuSondage(bool r1[], Protection* pro, Infection inf[], Repo
     if (f.fail()) // fichier ouvert ?
     {
 #ifdef _WIN32
-        MessageBoxA(NULL, MESSAGE_ERREUR, "Erreur", MB_OK | MB_ICONSTOP);
+        string erreur = MESSAGE_ERREUR;
+        erreur += " Route essayée : ";
+        erreur += name;
+        MessageBoxA(NULL, erreur.c_str(), "Route incorrecte", MB_OK | MB_ICONSTOP);
 #else
         cerr << MESSAGE_ERREUR << endl;
 #endif

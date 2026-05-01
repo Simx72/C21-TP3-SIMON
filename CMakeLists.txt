@@ -4,6 +4,8 @@ project(TP3 VERSION 0.1.0 LANGUAGES CXX)
 
 add_executable(TP3)
 
+target_compile_options(TP3 PRIVATE -finput-charset=UTF-8 -fexec-charset=UTF-8)
+
 if(MINGW)
   message(STATUS "Building with MinGW")
 endif()
